@@ -7,19 +7,32 @@ actor: AcceptanceTester
 modules:
   enabled:
     - Asserts: {}
+    # No real connection so need to comment out this
+    #- Db:
+    #    dsn: 'pgsql:host=127.0.0.1;port=5432;dbname=test_db'
+    #    user: 'postgres'
+    #    password: 'secret'
+    #    dump: 'tests/_data/dump.sql'
+    #    populate: false
+    #    cleanup: false
+    #    reconnect: true
     - WebDriver:
-        url: 'https://example.com'   # Обязательная заглушка, без нее codeception не умеет работать
+        url: 'https://example.com' # Обязательная заглушка, без нее codeception не умеет работать
         browser: chrome
-        host: '127.0.0.1'    # Selenium контейнер доступен на localhost
+        host: '127.0.0.1'
         port: 4444
         window_size: 1920x1080
-        wait: 5               # неявное ожидание элементов, в секундах
+        wait: 5 # неявное ожидание элементов, в секундах
         capabilities:
           goog:chromeOptions:
             args:
               - '--no-sandbox'
               - '--disable-dev-shm-usage'
               - '--disable-gpu'
+    - REST: # better to use API and UI in separate suits !
+        url: 'https://api.example.com' # базовый URL API
+        depends: PhpBrowser
+        part: Json
 # Add Codeception\Step\Retry trait to AcceptanceTester to enable retries
 step_decorators:
     - Codeception\Step\ConditionalAssertion

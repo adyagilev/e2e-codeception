@@ -2,32 +2,37 @@
 
 namespace tests\Acceptance;
 
+use lib\Object\User;
 use lib\PageObject\LoginPage;
 use lib\PageObject\RestorePasswordPage;
-use lib\Service\LoginService;
-use lib\Service\NavigationService;
+use lib\Service\Api\ApiUserService;
+use lib\Service\Db\DbUserService;
+use lib\Service\Ui\UiLoginService;
+use lib\Service\Ui\UiNavigationService;
 use PHPUnit\Framework\Assert;
 use Tests\Support\AcceptanceTester;
-use lib\Object\User;
 
 class LoginFormUiCest extends BaseUiCest
 {
-    private LoginService $loginService;
+    private UiLoginService $loginService;
     private LoginPage $loginPage;
 
     public function _before(AcceptanceTester $I): void
     {
         parent::_before($I);
-        $this->loginService = new LoginService($I);
+        $this->loginService = new UiLoginService($I);
         $this->loginPage = new LoginPage($I);
-        (new NavigationService($I))->openSite();
+        (new UiNavigationService($I))->openSite();
     }
 
-    // This test is private because it's incomplete: we can't actually log in. Real credentials required.
+    // This test is private because actually we're not connected to API or DB and can't create user.
     private function checkCorrectLogin(AcceptanceTester $I): void
     {
         $user = new User('valid_user@example.com', '1q@W3e');
-        // Create user or use valid credentials
+        // Create user in system:
+        //(new DbUserService($I))->createUser($user);
+        // OR
+        //(new ApiUserService($I))->createUser($user);
         $this->loginService->login($user);
         // What do we expect here?
     }
