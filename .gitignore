@@ -1,0 +1,7 @@
+/.idea
+*.idea
+/composer.phar
+/vendor/
+.DS_Store
+.phpunit.result.cache
+.env

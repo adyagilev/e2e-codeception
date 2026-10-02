@@ -1,0 +1,42 @@
+{
+    "name": "adyagilev/e2e-codeception",
+    "description": "Codeception e2e tests",
+    "license": "test",
+    "type": "project",
+    "require": {
+        "php": "8.4.*",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-pdo_pgsql": "*",
+        "phpunit/phpunit": "13.1.14",
+        "brianium/paratest": "v7.22.4",
+        "allure-framework/allure-phpunit": "v3.3.0",
+        "php-webdriver/webdriver": "1.16.0",
+        "smalot/pdfparser": "v2.12.5",
+        "guzzlehttp/guzzle": "8.2.0",
+        "phpseclib/phpseclib": "4.0.1",
+        "phpoffice/phpspreadsheet": "5.10.0",
+        "fakerphp/faker": "v1.24.1",
+        "hassankhan/config": "3.2.0",
+        "vaimo/composer-patches": "6.0.3",
+        "twig/twig": "v3.30.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "lib\\": "lib/",
+            "tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "vaimo/composer-patches": true
+        }
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.3",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*",
+        "codeception/module-webdriver": "^4.0"
+    }
+}
