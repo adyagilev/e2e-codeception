@@ -47,6 +47,13 @@ class LoginFormUiCest extends BaseUiCest
         Assert::assertStringContainsString('cannot be blank', $this->loginPage->getPasswordErrorMessage());
     }
 
+    public function checkMaskedPassword(AcceptanceTester $I): void
+    {
+        $user = new User('user@example.com', '1q2w3e');
+        $this->loginService->login($user);
+        Assert::assertEquals('password', $this->loginPage->getPasswordFieldTypeAttributre());
+    }
+
     public function checkForgotPasswordLink(AcceptanceTester $I): void
     {
         $this->loginPage->waitForPageToLoad();

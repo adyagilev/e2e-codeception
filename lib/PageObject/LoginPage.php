@@ -47,4 +47,10 @@ class LoginPage extends AbstractPage
         $this->acceptanceTester->waitForElementVisible($this->passwordErrorMessage, $timeout);
         return $this->acceptanceTester->grabTextFrom($this->passwordErrorMessage);
     }
+
+    public function getPasswordFieldTypeAttributre(int $timeout = AbstractPage::DEFAULT_TIMEOUT_SECONDS): string
+    {
+        $this->acceptanceTester->waitForElementVisible($this->passwordField, $timeout);
+        return $this->acceptanceTester->grabAttributeFrom($this->passwordField, 'type');
+    }
 }
